@@ -1,5 +1,5 @@
 export const ROUTES = {
-  HOME: '/',
+  HOME: '/dashboard',
   TRANSACTIONS: '/transactions',
   TRANSACTION_NEW: '/transactions/new',
   TRANSACTION_DETAIL: (id: string) => `/transactions/${id}`,

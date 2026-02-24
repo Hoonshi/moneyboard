@@ -1,7 +1,16 @@
+﻿import { Sidebar } from '@/components/layout/sidebar';
+
 export default function MainLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="h-screen bg-gray-50 overflow-hidden">{children}</div>;
+  return (
+    <div className="h-screen overflow-hidden bg-gray-50 lg:flex lg:bg-white">
+      <Sidebar />
+      <div className="flex-1 min-w-0 h-full overflow-hidden">
+        {children}
+      </div>
+    </div>
+  );
 }

@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(py:*)",
+      "Bash(node --version:*)",
+      "Bash(node -e \":*)",
+      "Bash(node -e:*)",
+      "Bash(printf:*)",
+      "Bash(node:*)",
+      "Bash(powershell -NoProfile -File -:*)",
+      "Bash(powershell -NoProfile -Command \"Set-Content -Path ''C:\\\\Users\\\\영훈\\\\Desktop\\\\pg_tmp.js'' -Encoding UTF8 -Value ''const fs=require\\(\"\"fs\"\"\\);const b=\"\"c:/Users/\\\\uC601\\\\uD6C8/Desktop/moneyboard/src/app/\\(main\\)\"\";fs.mkdirSync\\(b+\"\"/calendar\"\",{recursive:true}\\);fs.mkdirSync\\(b+\"\"/reports\"\",{recursive:true}\\);fs.mkdirSync\\(b+\"\"/transactions/new/_components\"\",{recursive:true}\\);fs.mkdirSync\\(b+\"\"/transactions/[id]/_components\"\",{recursive:true}\\);console.log\\(\"\"dirs ok\"\"\\);''; node ''C:\\\\Users\\\\영훈\\\\Desktop\\\\pg_tmp.js''\")",
+      "Bash(Set-Content -Path 'C:\\\\Users\\\\영훈\\\\Desktop\\\\pg2.js' -Encoding UTF8)",
+      "Bash(\")",
+      "Bash(powershell -NoProfile -Command \"\\([System.IO.File]::ReadAllText\\(''c:/Users/영훈/Desktop/moneyboard/src/app/\\(main\\)/calendar/page.tsx'', [System.Text.Encoding]::UTF8\\)\\).Substring\\(0,200\\)\")",
+      "Bash(powershell -NoProfile -Command \"\\([System.IO.File]::ReadAllText\\(''c:/Users/영훈/Desktop/moneyboard/src/app/\\(main\\)/calendar/page.tsx'', [System.Text.Encoding]::UTF8\\)\\).Replace\\([char]10,''|''\\).Substring\\(180,400\\)\")",
+      "Bash(powershell -NoProfile -Command \":*)"
+    ],
+    "additionalDirectories": [
+      "\\tmp"
+    ]
+  }
+}
