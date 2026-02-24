@@ -1,61 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { createClient } from "@/lib/supabase/client";
 import { transactionKeys } from "@/lib/queryKey";
-import type {
-  Transaction,
-  TransactionListParams,
-  TransactionListResponse,
-} from "@/types/transaction";
+import type { TransactionListParams } from "@/types/transaction";
+import transactionList from "@/apis/transaction/transactionList";
 
 export function useTransactionList(params: TransactionListParams) {
-  const supabase = createClient();
-
   return useQuery({
     queryKey: transactionKeys.list(params),
-    queryFn: async (): Promise<TransactionListResponse> => {
-      const { filter, sort, page, pageSize } = params;
-      const from = (page - 1) * pageSize;
-      const to = from + pageSize - 1;
-
-      let query = supabase
-        .from("transactions")
-        .select(
-          `
-          *,
-          category:categories(name, icon, color)
-        `,
-          { count: "exact" },
-        )
-        .range(from, to);
-
-      // 필터 적용
-      if (filter.type !== "all") {
-        query = query.eq("type", filter.type);
-      }
-      if (filter.categoryId) {
-        query = query.eq("category_id", filter.categoryId);
-      }
-      if (filter.startDate) {
-        query = query.gte("date", filter.startDate);
-      }
-      if (filter.endDate) {
-        query = query.lte("date", filter.endDate);
-      }
-      if (filter.search) {
-        query = query.ilike("title", `%${filter.search}%`);
-      }
-
-      // 정렬 적용
-      query = query.order(sort.key, { ascending: sort.direction === "asc" });
-
-      const { data, count, error } = await query;
-      if (error) throw error;
-
-      return {
-        data: (data as Transaction[]) ?? [],
-        totalCount: count ?? 0,
-        totalPages: Math.ceil((count ?? 0) / pageSize),
-      };
-    },
+    queryFn: () => transactionList(params),
   });
 }
