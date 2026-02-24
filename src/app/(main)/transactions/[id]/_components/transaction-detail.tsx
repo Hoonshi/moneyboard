@@ -1,31 +1,36 @@
-import { Utensils, FileText } from 'lucide-react';
+import { Utensils, FileText } from "lucide-react";
 
 interface TransactionDetailProps {
   id: string;
 }
 
 const MOCK = {
-  type: 'expense' as const,
+  type: "expense" as const,
   amount: -6500,
-  title: '스타벅스 강남점',
-  date: '2025년 2월 20일 (목)',
-  category: '식비',
+  title: "스타벅스 강남점",
+  date: "2025년 2월 20일 (목)",
+  category: "식비",
   CategoryIcon: Utensils,
-  recurring: '없음',
-  memo: '아메리카노 아이스 톨 사이즈',
-  memoSub: '오후 미팅 전에 커피 한 잔. 다음부터는 텀블러 들고 다녀야지...',
+  memo: "아메리카노 아이스 톨 사이즈",
+  memoSub: "오후 미팅 전에 커피 한 잔. 다음부터는 텀블러 들고 다녀야지...",
 };
 
 export function TransactionDetail({ id }: TransactionDetailProps) {
-  const isExpense = MOCK.type === 'expense';
+  const isExpense = MOCK.type === "expense";
 
   return (
     <div className="space-y-4 pt-2">
       {/* Amount Card */}
-      <div className={`${isExpense ? 'bg-red-50' : 'bg-blue-50'} rounded-2xl p-5 text-center`}>
-        <p className="text-[11px] text-gray-500">{isExpense ? '지출' : '수입'}</p>
-        <p className={`text-2xl font-bold mt-1 ${isExpense ? 'text-red-500' : 'text-blue-600'}`}>
-          {isExpense ? '-' : '+'}₩{Math.abs(MOCK.amount).toLocaleString()}
+      <div
+        className={`${isExpense ? "bg-red-50" : "bg-blue-50"} rounded-2xl p-5 text-center`}
+      >
+        <p className="text-[11px] text-gray-500">
+          {isExpense ? "지출" : "수입"}
+        </p>
+        <p
+          className={`text-2xl font-bold mt-1 ${isExpense ? "text-red-500" : "text-blue-600"}`}
+        >
+          {isExpense ? "-" : "+"}₩{Math.abs(MOCK.amount).toLocaleString()}
         </p>
         <p className="text-sm text-gray-600 mt-1">{MOCK.title}</p>
       </div>
@@ -40,12 +45,10 @@ export function TransactionDetail({ id }: TransactionDetailProps) {
           <span className="text-xs text-gray-500">카테고리</span>
           <div className="flex items-center gap-1.5">
             <MOCK.CategoryIcon size={12} className="text-gray-500" />
-            <span className="text-xs font-medium text-gray-700">{MOCK.category}</span>
+            <span className="text-xs font-medium text-gray-700">
+              {MOCK.category}
+            </span>
           </div>
-        </div>
-        <div className="flex items-center justify-between px-4 py-3.5">
-          <span className="text-xs text-gray-500">반복</span>
-          <span className="text-xs font-medium text-gray-700">{MOCK.recurring}</span>
         </div>
       </div>
 

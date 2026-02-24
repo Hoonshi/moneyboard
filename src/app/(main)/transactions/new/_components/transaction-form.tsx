@@ -1,22 +1,32 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Utensils, Car, Home, Gamepad2, Package, Pill, BookOpen, Repeat, ChevronDown } from 'lucide-react';
-import type { ElementType } from 'react';
+import { useState } from "react";
+import {
+  Utensils,
+  Car,
+  Home,
+  Gamepad2,
+  Package,
+  Pill,
+  BookOpen,
+  Repeat,
+  ChevronDown,
+} from "lucide-react";
+import type { ElementType } from "react";
 
 const CATEGORIES: { Icon: ElementType; label: string }[] = [
-  { Icon: Utensils, label: '식비'   },
-  { Icon: Car,      label: '교통'   },
-  { Icon: Home,     label: '주거'   },
-  { Icon: Gamepad2, label: '여가'   },
-  { Icon: Package,  label: '쇼핑'   },
-  { Icon: Pill,     label: '의료'   },
-  { Icon: BookOpen, label: '교육'   },
-  { Icon: Repeat,   label: '구독'   },
+  { Icon: Utensils, label: "식비" },
+  { Icon: Car, label: "교통" },
+  { Icon: Home, label: "주거" },
+  { Icon: Gamepad2, label: "여가" },
+  { Icon: Package, label: "쇼핑" },
+  { Icon: Pill, label: "의료" },
+  { Icon: BookOpen, label: "교육" },
+  { Icon: Repeat, label: "구독" },
 ];
 
 export function TransactionForm() {
-  const [type, setType] = useState<'expense' | 'income'>('expense');
+  const [type, setType] = useState<"expense" | "income">("expense");
   const [selectedCat, setSelectedCat] = useState(0);
 
   return (
@@ -24,17 +34,21 @@ export function TransactionForm() {
       {/* Type Toggle */}
       <div className="flex bg-gray-100 rounded-xl p-1">
         <button
-          onClick={() => setType('expense')}
+          onClick={() => setType("expense")}
           className={`flex-1 py-2.5 text-center text-xs font-bold rounded-lg transition-colors ${
-            type === 'expense' ? 'bg-white text-red-500 shadow-sm' : 'text-gray-400'
+            type === "expense"
+              ? "bg-white text-red-500 shadow-sm"
+              : "text-gray-400"
           }`}
         >
           지출
         </button>
         <button
-          onClick={() => setType('income')}
+          onClick={() => setType("income")}
           className={`flex-1 py-2.5 text-center text-xs font-medium rounded-lg transition-colors ${
-            type === 'income' ? 'bg-white text-blue-500 shadow-sm' : 'text-gray-400'
+            type === "income"
+              ? "bg-white text-blue-500 shadow-sm"
+              : "text-gray-400"
           }`}
         >
           수입
@@ -74,8 +88,8 @@ export function TransactionForm() {
                 onClick={() => setSelectedCat(i)}
                 className={`flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] border ${
                   selectedCat === i
-                    ? 'border-blue-400 bg-blue-50 text-blue-600 font-medium'
-                    : 'border-gray-200 text-gray-500'
+                    ? "border-blue-400 bg-blue-50 text-blue-600 font-medium"
+                    : "border-gray-200 text-gray-500"
                 }`}
               >
                 <cat.Icon size={11} />
@@ -91,17 +105,6 @@ export function TransactionForm() {
             placeholder="메모를 입력하세요..."
             className="text-xs text-gray-700 w-full outline-none placeholder:text-gray-300"
           />
-        </div>
-      </div>
-
-      {/* Recurring Toggle */}
-      <div className="bg-white rounded-xl px-4 py-3.5 flex items-center justify-between">
-        <div>
-          <p className="text-xs font-medium text-gray-700">반복 거래</p>
-          <p className="text-[10px] text-gray-400 mt-0.5">매월 자동으로 기록됩니다</p>
-        </div>
-        <div className="w-10 h-5 bg-gray-200 rounded-full relative">
-          <div className="w-4 h-4 bg-white rounded-full absolute left-0.5 top-0.5 shadow-sm" />
         </div>
       </div>
     </div>
