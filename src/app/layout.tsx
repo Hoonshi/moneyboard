@@ -1,9 +1,10 @@
-import type { Metadata } from 'next';
-import './globals.css';
+import type { Metadata } from "next";
+import Provider from "@/providers/provider";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'MoneyLog',
-  description: '나만의 똑똑한 가계부',
+  title: "MoneyLog",
+  description: "나만의 가계부",
 };
 
 export default function RootLayout({
@@ -13,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <Provider>{children}</Provider>
+      </body>
     </html>
   );
 }

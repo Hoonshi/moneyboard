@@ -1,15 +1,15 @@
-import { Bell, ChevronDown } from 'lucide-react';
-import { MobileShell } from '@/components/layout/mobile-shell';
-import { SummaryCards } from '@/app/_components/summary-cards';
-import { CategoryBreakdown } from '@/app/_components/category-breakdown';
-import { BudgetProgress } from '@/app/_components/budget-progress';
-import { RecentTransactions } from '@/app/_components/recent-transactions';
-import { DashboardDesktop } from '@/app/_components/dashboard-desktop';
+import { Bell, ChevronDown } from "lucide-react";
+import { MobileShell } from "@/components/layout/mobile-shell";
+import { SummaryCards } from "@/app/(main)/dashboard/_components/summary-cards";
+import { CategoryBreakdown } from "@/app/(main)/dashboard/_components/category-breakdown";
+import { BudgetProgress } from "@/app/(main)/dashboard/_components/budget-progress";
+import { RecentTransactions } from "@/app/(main)/dashboard/_components/recent-transactions";
+import { DashboardDesktop } from "@/app/(main)/dashboard/_components/dashboard-desktop";
 
 export default function DashboardPage() {
   return (
     <div className="h-full">
-      {/* Mobile */}
+      {/* 모바일 */}
       <div className="h-full lg:hidden">
         <MobileShell
           title="MoneyLog"
@@ -25,7 +25,7 @@ export default function DashboardPage() {
         </MobileShell>
       </div>
 
-      {/* Desktop */}
+      {/* PC버전 */}
       <div className="hidden lg:flex flex-col h-full bg-white">
         <header className="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
           <div>
