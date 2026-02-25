@@ -1,5 +1,3 @@
-import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
 import { TransactionDetail } from "./_components/transactionDetail";
 import DetailUpdateDeleteButton from "./_components/detailUpdateDeleteButton";
 
@@ -14,9 +12,6 @@ export default async function TransactionDetailPage({
     <div className="h-full flex flex-col bg-gray-50 lg:bg-white">
       <header className="bg-white flex items-center justify-between px-4 lg:px-6 py-3 lg:py-4 border-b border-gray-100 shrink-0">
         <div className="flex items-center gap-1">
-          <Link href="/transactions">
-            <ChevronLeft size={18} className="text-gray-400 -ml-1" />
-          </Link>
           <div>
             <h1 className="text-base lg:text-sm font-bold text-gray-900 lg:text-gray-800">
               거래 상세

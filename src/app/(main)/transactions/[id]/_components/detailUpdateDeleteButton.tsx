@@ -10,14 +10,20 @@ export default function DetailUpdateDeleteButton({ id }: { id: string }) {
   return (
     <div className="flex gap-2">
       <button
+        onClick={() => router.push(`/transactions`)}
+        className="cursor-pointer px-2.5 py-1 rounded-full text-[11px] font-medium bg-gray-100 text-gray-600"
+      >
+        취소
+      </button>
+      <button
         onClick={() => router.push(`/transactions/${id}/edit`)}
-        className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-gray-100 text-gray-600"
+        className="cursor-pointer px-2.5 py-1 rounded-full text-[11px] font-medium bg-gray-100 text-gray-600"
       >
         수정
       </button>
       <button
         onClick={() => mutateDelete(id)}
-        className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-gray-100 text-gray-600"
+        className="cursor-pointer px-2.5 py-1 rounded-full text-[11px] font-medium bg-gray-100 text-gray-600"
       >
         삭제
       </button>

@@ -25,7 +25,7 @@ export function TransactionListView() {
   });
 
   //데이터
-  const { data, isLoading, error } = useTransactionList({
+  const { data, isPending, error } = useTransactionList({
     filter,
     sort,
     page,
