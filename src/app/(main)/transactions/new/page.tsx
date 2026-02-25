@@ -1,55 +1,35 @@
-import { MobileShell } from "@/components/layout/mobileShell";
+import Link from "next/link";
+import { ChevronLeft } from "lucide-react";
 import { TransactionForm } from "./_components/transaction-form";
 
 export default function TransactionNewPage() {
   return (
-    <div className="h-full">
-      {/* Mobile */}
-      <div className="h-full lg:hidden">
-        <MobileShell
-          title="새 거래"
-          hideNav
-          back
-          rightAction={
-            <button
-              type="submit"
-              form="transaction-form"
-              className="cursor-pointer px-2.5 py-1 rounded-full text-[11px] font-medium bg-main text-white"
-            >
-              저장
-            </button>
-          }
-        >
-          <TransactionForm />
-        </MobileShell>
-      </div>
-
-      {/* Desktop */}
-      <div className="hidden lg:flex flex-col h-full bg-white">
-        <header className="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
+    <div className="h-full flex flex-col bg-gray-50 lg:bg-white">
+      <header className="bg-white flex items-center justify-between px-4 lg:px-6 py-3 lg:py-4 border-b border-gray-100 shrink-0">
+        <div className="flex items-center gap-1">
+          <Link href="/transactions">
+            <ChevronLeft size={18} className="text-gray-400 -ml-1" />
+          </Link>
           <div>
-            <h2 className="text-sm font-bold text-gray-800">새 거래</h2>
-            <p className="text-xs text-gray-400 mt-0.5">
+            <h1 className="text-base lg:text-sm font-bold text-gray-900 lg:text-gray-800">
+              새 거래
+            </h1>
+            <p className="hidden lg:block text-xs text-gray-400 mt-0.5">
               거래 정보를 입력하세요
             </p>
           </div>
-          <div className="flex items-center gap-2">
-            <button className="cursor-pointer text-xs text-gray-500 border border-gray-200 rounded-md px-3 py-1.5 hover:bg-gray-50">
-              취소
-            </button>
-            <button
-              type="submit"
-              form="transaction-form"
-              className="cursor-pointer text-xs text-white bg-main rounded-md px-3 py-1.5 hover:bg-blue-600"
-            >
-              저장
-            </button>
-          </div>
-        </header>
-        <div className="flex-1 overflow-auto p-5">
-          <div className="max-w-lg mx-auto">
-            <TransactionForm />
-          </div>
+        </div>
+        <button
+          type="submit"
+          form="transaction-form"
+          className="cursor-pointer px-2.5 py-1 rounded-full text-[11px] font-medium bg-main text-white lg:rounded-md lg:px-3 lg:py-1.5 lg:text-xs"
+        >
+          저장
+        </button>
+      </header>
+      <div className="flex-1 overflow-auto p-4 lg:p-5 pb-24 lg:pb-5">
+        <div className="max-w-lg mx-auto">
+          <TransactionForm />
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ import { useTransactionList } from "@/hooks/query/useTransactionList";
 import type { TransactionFilter, TransactionSort } from "@/types/transaction";
 import Link from "next/link";
 
-export function TransactionsDesktop() {
+export function TransactionListDesktop() {
   //현재 페이지 및 한번에 보여줄 데이터 개수
   const [page, setPage] = useState(1);
   const pageSize = 10;
@@ -101,8 +101,32 @@ export function TransactionsDesktop() {
         ))} */}
       </div>
 
-      {/* Table */}
-      <div className="border border-gray-200 rounded-lg overflow-hidden">
+      {/* Mobile: 카드 뷰 */}
+      <div className="lg:hidden space-y-2">
+        {data?.data?.map((tx) => (
+          <Link
+            href={`/transactions/${tx.id}`}
+            key={tx.id}
+            className="flex items-center gap-3 bg-white rounded-xl px-4 py-3 hover:bg-blue-50"
+          >
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-medium text-gray-800">{tx.title}</p>
+              <p className="text-[10px] text-gray-400 mt-0.5">
+                {tx.category.name}
+                {tx.memo ? ` · ${tx.memo}` : ""} · {tx.date}
+              </p>
+            </div>
+            <span
+              className={`text-xs font-semibold shrink-0 ${tx.type === "expense" ? "text-red-500" : "text-blue-600"}`}
+            >
+              {tx.type === "expense" ? "-" : "+"}₩{tx.amount.toLocaleString()}
+            </span>
+          </Link>
+        ))}
+      </div>
+
+      {/* Desktop: 테이블 뷰 */}
+      <div className="hidden lg:block border border-gray-200 rounded-lg overflow-hidden">
         <div className="grid grid-cols-12 gap-2 px-3 py-2 bg-gray-50 border-b border-gray-200 text-xs text-gray-500 font-medium">
           <span className="col-span-1">날짜</span>
           <span className="col-span-3">내용</span>

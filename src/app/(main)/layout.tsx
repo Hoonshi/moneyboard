@@ -1,4 +1,5 @@
-﻿import { Sidebar } from '@/components/layout/sidebar';
+import { Sidebar } from '@/components/layout/sidebar';
+import { MobileNav } from '@/components/layout/mobileNav';
 
 export default function MainLayout({
   children,
@@ -11,6 +12,7 @@ export default function MainLayout({
       <div className="flex-1 min-w-0 h-full overflow-hidden">
         {children}
       </div>
+      <MobileNav />
     </div>
   );
 }
