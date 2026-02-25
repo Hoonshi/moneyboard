@@ -1,4 +1,4 @@
-import { SettingsDesktop } from "./_components/settings-desktop";
+import { SettingsDesktop } from "./_components/settingsDesktop";
 
 export default function SettingsPage() {
   return (

@@ -1,5 +1,5 @@
 import { Plus } from "lucide-react";
-import { BudgetDesktop } from "./_components/budget-desktop";
+import { BudgetDesktop } from "./_components/budgetDesktop";
 
 export default function BudgetPage() {
   return (

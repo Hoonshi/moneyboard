@@ -3,7 +3,7 @@
 "use client";
 
 import { useTransaction } from "@/hooks/query/useTransaction";
-import { TransactionForm } from "@/app/(main)/transactions/new/_components/transaction-form";
+import { TransactionForm } from "@/app/(main)/transactions/new/_components/transactionForm";
 
 export default function TransactionEditLoader({ id }: { id: string }) {
   const { data, isPending } = useTransaction(id);

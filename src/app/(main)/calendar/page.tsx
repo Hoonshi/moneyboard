@@ -1,5 +1,5 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { CalendarGridDesktop } from "./_components/calendar-grid-desktop";
+import { CalendarGridDesktop } from "./_components/calendarGridDesktop";
 
 export default function CalendarPage() {
   return (

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
-import { TransactionDetail } from "./_components/transaction-detail";
+import { TransactionDetail } from "./_components/transactionDetail";
 import DetailUpdateDeleteButton from "./_components/detailUpdateDeleteButton";
 
 export default async function TransactionDetailPage({

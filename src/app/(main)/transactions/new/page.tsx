@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
-import { TransactionForm } from "./_components/transaction-form";
+import { TransactionForm } from "./_components/transactionForm";
 
 export default function TransactionNewPage() {
   return (

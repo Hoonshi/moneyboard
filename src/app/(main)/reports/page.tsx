@@ -1,8 +1,8 @@
 import { ChevronDown, Utensils, Home, Car, Gamepad2, Package } from "lucide-react";
 import type { ElementType } from "react";
-import { MonthlyComparison } from "./_components/monthly-comparison";
-import { DailyTrendChart } from "./_components/daily-trend-chart";
-import { TopExpenses } from "./_components/top-expenses";
+import { MonthlyComparison } from "./_components/monthlyComparison";
+import { DailyTrendChart } from "./_components/dailyTrendChart";
+import { TopExpenses } from "./_components/topExpenses";
 
 const CATEGORY_BREAKDOWN: {
   Icon: ElementType;

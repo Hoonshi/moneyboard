@@ -1,5 +1,5 @@
 import { ChevronDown } from "lucide-react";
-import { DashboardDesktop } from "@/app/(main)/dashboard/_components/dashboard-desktop";
+import { DashboardDesktop } from "@/app/(main)/dashboard/_components/dashboardDesktop";
 
 export default function DashboardPage() {
   return (

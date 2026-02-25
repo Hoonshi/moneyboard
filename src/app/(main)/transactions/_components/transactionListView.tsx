@@ -6,7 +6,7 @@ import { useTransactionList } from "@/hooks/query/useTransactionList";
 import type { TransactionFilter, TransactionSort } from "@/types/transaction";
 import Link from "next/link";
 
-export function TransactionListDesktop() {
+export function TransactionListView() {
   //현재 페이지 및 한번에 보여줄 데이터 개수
   const [page, setPage] = useState(1);
   const pageSize = 10;
