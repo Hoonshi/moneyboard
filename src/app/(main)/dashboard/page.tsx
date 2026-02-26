@@ -13,9 +13,9 @@ export default function DashboardPage() {
             2025년 2월 재무 현황
           </p>
         </div>
-        <button className="flex items-center gap-1 text-xs text-gray-600 border border-gray-200 rounded-md px-2.5 py-1.5 hover:bg-gray-50">
+        {/* <button className="flex items-center gap-1 text-xs text-gray-600 border border-gray-200 rounded-md px-2.5 py-1.5 hover:bg-gray-50">
           이번 달 <ChevronDown size={13} className="text-gray-400" />
-        </button>
+        </button> */}
       </header>
       <div className="flex-1 overflow-auto p-4 lg:p-5 pb-24 lg:pb-5">
         <Dashboard />

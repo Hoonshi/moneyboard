@@ -119,7 +119,8 @@ export function TransactionListView() {
             <span
               className={`text-xs font-semibold shrink-0 ${tx.type === "expense" ? "text-red-500" : "text-blue-600"}`}
             >
-              {tx.type === "expense" ? "-" : "+"}₩{tx.amount.toLocaleString()}
+              {tx.type === "expense" ? "-" : "+"}
+              {tx.amount.toLocaleString()}원
             </span>
           </Link>
         ))}
@@ -127,19 +128,19 @@ export function TransactionListView() {
 
       {/* Desktop: 테이블 뷰 */}
       <div className="hidden lg:block border border-gray-200 rounded-lg overflow-hidden">
-        <div className="grid grid-cols-12 gap-2 px-3 py-2 bg-gray-50 border-b border-gray-200 text-xs text-gray-500 font-medium">
+        <div className="grid grid-cols-11 gap-2 px-3 py-2 bg-gray-50 border-b border-gray-200 text-xs text-gray-500 font-medium">
           <span className="col-span-1">날짜</span>
           <span className="col-span-3">내용</span>
           <span className="col-span-2">카테고리</span>
           <span className="col-span-2">메모</span>
           <span className="col-span-2 text-right">금액</span>
-          <span className="col-span-2 text-right">잔액</span>
+          {/* <span className="col-span-2 text-right">잔액</span> */}
         </div>
         {data?.data?.map((tx) => (
           <Link
             href={`/transactions/${tx.id}`}
             key={tx.id}
-            className="grid grid-cols-12 gap-2 px-3 py-2.5 border-b border-gray-100 last:border-0 text-xs items-center hover:bg-blue-50 cursor-pointer"
+            className="grid grid-cols-11 gap-2 px-3 py-2.5 border-b border-gray-100 last:border-0 text-xs items-center hover:bg-blue-50 cursor-pointer"
           >
             <span className="col-span-1 text-gray-400">{tx.date}</span>
             <span className="col-span-3 font-medium text-gray-700">
@@ -150,9 +151,9 @@ export function TransactionListView() {
             <span
               className={`col-span-2 text-right font-semibold ${tx.type === "expense" ? "text-red-500" : "text-blue-600"}`}
             >
-              {tx.type === "expense" ? "-" : "+"} ₩ {tx.amount.toLocaleString()}
+              {tx.type === "expense" ? "-" : "+"} {tx.amount.toLocaleString()}원
             </span>
-            <span className="col-span-2 text-right text-gray-400">-</span>
+            {/* <span className="col-span-2 text-right text-gray-400">-</span> */}
           </Link>
         ))}
       </div>

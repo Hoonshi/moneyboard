@@ -1,12 +1,11 @@
 ﻿"use client";
 
+import Link from "next/link";
+import { useTransactionList } from "@/hooks/query/useTransactionList";
 import useCategorySummary from "@/hooks/query/useCategorySummary";
 import useMonthlySummary from "@/hooks/query/useMonthlySummary";
-import { useTransactionList } from "@/hooks/query/useTransactionList";
-import { Utensils, Car, Wallet, Repeat } from "lucide-react";
 import type { TransactionListParams } from "@/types/transaction";
-import type { ElementType } from "react";
-import Link from "next/link";
+import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
 interface CategoryData {
   color: string;
@@ -16,37 +15,6 @@ interface CategoryData {
   percentage: number;
   total: number;
 }
-
-const RECENT: {
-  Icon: ElementType;
-  name: string;
-  cat: string;
-  amount: string;
-  neg: boolean;
-}[] = [
-  {
-    Icon: Utensils,
-    name: "스타벅스",
-    cat: "식비",
-    amount: "-₩6,500",
-    neg: true,
-  },
-  {
-    Icon: Wallet,
-    name: "월급",
-    cat: "급여",
-    amount: "+₩3,200,000",
-    neg: false,
-  },
-  { Icon: Car, name: "택시", cat: "교통", amount: "-₩12,000", neg: true },
-  {
-    Icon: Repeat,
-    name: "넷플릭스",
-    cat: "구독",
-    amount: "-₩17,000",
-    neg: true,
-  },
-];
 
 export function Dashboard() {
   //임시로 이번달만 체크
@@ -71,7 +39,7 @@ export function Dashboard() {
     pageSize: 5,
   };
   const { data: transactionList } = useTransactionList(transactionData);
-  console.log("transactionList", transactionList);
+  console.log("categoryData", categoryData);
 
   return (
     <div className="space-y-4">
@@ -99,32 +67,39 @@ export function Dashboard() {
         ].map((c) => (
           <div key={c.label} className={`${c.bg} rounded-lg p-3.5`}>
             <p className="text-xs text-gray-500">{c.label}</p>
-            <p className={`text-lg font-bold mt-1 ${c.color}`}>{c.amount}</p>
-            <p className="text-xs text-gray-400 mt-1">전월 대비 +12%</p>
+            <p className={`text-lg font-bold mt-1 ${c.color}`}>
+              {c.amount.toLocaleString()}원
+            </p>
+            {/* <p className="text-xs text-gray-400 mt-1">전월 대비 +12%</p> */}
           </div>
         ))}
       </div>
-
       {/* 차트*/}
       <div className="grid grid-cols-5 gap-3">
         <div className="col-span-3 border border-gray-200 rounded-lg p-3">
           <span className="text-xs font-mono text-gray-400 uppercase tracking-wider">
-            월별 수입/지출 추이
+            월별 지출 추이
           </span>
-          <div className="mt-3 h-36 flex items-end gap-1.5 px-2">
-            {[65, 45, 70, 55, 80, 60, 75, 50, 85, 70, 60, 72].map((h, i) => (
-              <div key={i} className="flex-1 flex flex-col gap-0.5">
-                <div
-                  className="bg-blue-200 rounded-sm"
-                  style={{ height: `${h}%` }}
-                />
-                <div
-                  className="bg-red-200 rounded-sm"
-                  style={{ height: `${h * 0.6}%` }}
-                />
-              </div>
-            ))}
-          </div>
+          {/* 추후 renderCustomizedLabel 활용해서 퍼센트 표시 */}
+          <ResponsiveContainer width="100%" height={250}>
+            <PieChart>
+              <Pie
+                data={categoryData}
+                dataKey="total"
+                nameKey="name"
+                innerRadius={50}
+                outerRadius={80}
+                labelLine={false}
+                label={({ percent, name }) =>
+                  `${name} ${((percent || 0) * 100).toFixed(0)}%`
+                }
+              >
+                {categoryData?.map((item: CategoryData) => (
+                  <Cell key={item.id} fill={item.color} />
+                ))}
+              </Pie>
+            </PieChart>
+          </ResponsiveContainer>
         </div>
         {/* 카테고리 */}
         <div className="col-span-2 border border-gray-200 rounded-lg p-3">
@@ -134,7 +109,7 @@ export function Dashboard() {
           <div className="mt-3 space-y-2">
             {categoryData?.map((item: CategoryData) => (
               <div key={item.id} className="flex items-center gap-2">
-                <span className="text-xs w-10 text-gray-600">{item.name}</span>
+                <span className="text-xs w-14 text-gray-600">{item.name}</span>
                 <div className="flex-1 bg-gray-100 rounded-full h-2">
                   <div
                     className="h-2 rounded-full"
@@ -152,9 +127,9 @@ export function Dashboard() {
           </div>
         </div>
       </div>
-
-      {/* Budget Progress */}
-      {/* <div className="border border-gray-200 rounded-lg p-3">
+      {/*
+    
+      <div className="border border-gray-200 rounded-lg p-3">
         <span className="text-xs font-mono text-gray-400 uppercase tracking-wider">
           예산 진행률
         </span>
@@ -197,9 +172,9 @@ export function Dashboard() {
             );
           })}
         </div>
-      </div> */}
-
-      {/* 최근 거래 내역 */}
+      </div>
+      */}
+      {/*최근거래내역*/}
       <div className="border border-gray-200 rounded-lg p-3">
         <span className="text-xs font-mono text-gray-400 uppercase tracking-wider">
           최근 거래
@@ -229,7 +204,8 @@ export function Dashboard() {
               <span
                 className={`text-xs font-semibold ${tx.type === "expense" ? "text-red-500" : "text-blue-600"}`}
               >
-                {tx.type === "expense" ? "-" : "+"} ₩ {tx.amount}
+                {tx.type === "expense" ? "-" : "+"} {tx.amount.toLocaleString()}
+                원
               </span>
             </Link>
           ))}

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { transactionKeys } from "@/lib/queryKey";
+import { transactionKeys, dashboardKeys } from "@/lib/queryKey";
 import type { TransactionInsert } from "@/types/database";
 import createTransaction from "@/apis/transaction/createTransaction";
 
@@ -16,6 +16,7 @@ export function useCreateTransaction({
 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: transactionKeys.lists() });
+      queryClient.invalidateQueries({ queryKey: dashboardKeys.all });
       formReset?.();
     },
   });

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { transactionKeys } from "@/lib/queryKey";
+import { transactionKeys, dashboardKeys } from "@/lib/queryKey";
 import { TransactionUpdate } from "@/types/database";
 import updateTransaction from "@/apis/transaction/updateTransaction";
 
@@ -15,6 +15,7 @@ export function useUpdateTransaction() {
       queryClient.invalidateQueries({
         queryKey: transactionKeys.detail(data.id),
       });
+      queryClient.invalidateQueries({ queryKey: dashboardKeys.all });
     },
   });
 }
