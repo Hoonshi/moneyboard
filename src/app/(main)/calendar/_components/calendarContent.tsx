@@ -36,7 +36,7 @@ const CAT_ICONS: Record<string, React.ElementType> = {
   급여: Wallet,
 };
 
-export function CalendarGridDesktop() {
+export function CalendarContent() {
   const [selectedDay, setSelectedDay] = useState<number | null>(20);
   const days = Array.from({ length: 28 }, (_, i) => i + 1);
   const emptyCount = 6;

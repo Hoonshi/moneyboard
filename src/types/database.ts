@@ -80,13 +80,13 @@ export interface CategorySummary {
 }
 
 export interface BudgetStatus {
-  budget_id: string;
   category_id: string;
-  category_name: string;
-  category_icon: string;
-  category_color: string;
+  id: string;
+  name: string;
+  icon: string;
+  color: string;
   budget_amount: number;
-  spent_amount: number;
+  spent: number;
   percentage: number;
 }
 

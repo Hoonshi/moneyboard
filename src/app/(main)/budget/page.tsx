@@ -1,4 +1,4 @@
-import { BudgetDesktop } from "./_components/budget";
+import { BudgetContent } from "./_components/budgetContent";
 import AddBudgetButton from "./_components/addBudgetButton";
 
 export default function BudgetPage() {
@@ -16,7 +16,7 @@ export default function BudgetPage() {
         <AddBudgetButton />
       </header>
       <div className="flex-1 overflow-auto p-4 lg:p-5 pb-24 lg:pb-5">
-        <BudgetDesktop />
+        <BudgetContent />
       </div>
     </div>
   );

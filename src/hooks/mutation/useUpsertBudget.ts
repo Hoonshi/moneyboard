@@ -11,7 +11,6 @@ export default function useUpsertBudget() {
     mutationFn: (param: BudegetUpsertParams) => upsertBudget(param),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: budgetKeys.all });
-      console.log("예산이 성공적으로 추가/업데이트되었습니다.");
     },
   });
 }

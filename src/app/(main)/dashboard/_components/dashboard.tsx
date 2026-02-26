@@ -82,7 +82,7 @@ export function Dashboard() {
           </span>
           {/* 추후 renderCustomizedLabel 활용해서 퍼센트 표시 */}
           <ResponsiveContainer width="100%" height={250}>
-            <PieChart>
+            <PieChart style={{ pointerEvents: "none" }}>
               <Pie
                 data={categoryData}
                 dataKey="total"
@@ -95,7 +95,7 @@ export function Dashboard() {
                 }
               >
                 {categoryData?.map((item: CategoryData) => (
-                  <Cell key={item.id} fill={item.color} />
+                  <Cell stroke="none" key={item.id} fill={item.color} />
                 ))}
               </Pie>
             </PieChart>

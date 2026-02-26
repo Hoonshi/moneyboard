@@ -1,5 +1,5 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { CalendarGridDesktop } from "./_components/calendarGridDesktop";
+import { CalendarContent } from "./_components/calendarContent";
 
 export default function CalendarPage() {
   return (
@@ -14,13 +14,19 @@ export default function CalendarPage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <ChevronLeft size={16} className="text-gray-400 cursor-pointer hover:text-gray-600" />
+          <ChevronLeft
+            size={16}
+            className="text-gray-400 cursor-pointer hover:text-gray-600"
+          />
           <span className="text-xs font-bold text-gray-700">2025.02</span>
-          <ChevronRight size={16} className="text-gray-400 cursor-pointer hover:text-gray-600" />
+          <ChevronRight
+            size={16}
+            className="text-gray-400 cursor-pointer hover:text-gray-600"
+          />
         </div>
       </header>
       <div className="flex-1 overflow-auto p-4 lg:p-5 pb-24 lg:pb-5">
-        <CalendarGridDesktop />
+        <CalendarContent />
       </div>
     </div>
   );
