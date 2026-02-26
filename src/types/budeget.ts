@@ -14,3 +14,10 @@ export interface BudgetOverview {
   totalRemaining: number;
   overallPercentage: number;
 }
+
+export interface BudegetUpsertParams {
+  category_id: string;
+  year: number;
+  month: number;
+  amount: number;
+}

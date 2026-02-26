@@ -19,10 +19,19 @@ export const categoryKeys = {
   list: (type?: string) => [...categoryKeys.all, type] as const,
 };
 
+//대시보드 쿼리키
 export const dashboardKeys = {
   all: ["dashboard"] as const,
   monthlySummart: (year: number, month: number) =>
     [...dashboardKeys.all, "monthlySummary", year, month] as const,
   categorySummary: (year: number, month: number) =>
     [...dashboardKeys.all, "categorySummary", year, month] as const,
+};
+
+//예산(budget) 쿼리키
+export const budgetKeys = {
+  all: ["budget"] as const,
+  list: (year: number, month: number) =>
+    [...budgetKeys.all, year, month] as const,
+  item: (id: string) => [...budgetKeys.all, "item", id] as const,
 };
