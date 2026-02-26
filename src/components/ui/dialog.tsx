@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
 interface DialogProps {
-  open: boolean;
-  onClose: () => void;
+  open?: boolean;
+  onClose?: () => void;
   children: React.ReactNode;
   title?: string;
 }
