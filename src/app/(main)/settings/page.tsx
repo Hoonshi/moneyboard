@@ -1,4 +1,4 @@
-import { SettingsDesktop } from "./_components/settingsDesktop";
+import { SettingContent } from "./_components/settingContent";
 
 export default function SettingsPage() {
   return (
@@ -14,7 +14,7 @@ export default function SettingsPage() {
         </div>
       </header>
       <div className="flex-1 overflow-auto p-4 lg:p-5 pb-24 lg:pb-5">
-        <SettingsDesktop />
+        <SettingContent />
       </div>
     </div>
   );

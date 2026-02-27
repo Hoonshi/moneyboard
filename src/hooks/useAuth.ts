@@ -1,6 +1,6 @@
 "use client";
 
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
@@ -92,8 +92,26 @@ export function useLogout() {
     },
     onSuccess: () => {
       queryClient.clear(); // 모든 캐시 초기화
-      router.push("/login");
+      // router.push("/login");
       router.refresh();
+    },
+  });
+}
+
+export function useAuth() {
+  const supabase = createClient();
+
+  return useQuery({
+    queryKey: ["user"],
+    queryFn: async () => {
+      const {
+        data: { user },
+        error,
+      } = await supabase.auth.getUser();
+
+      if (error) throw error;
+
+      return user;
     },
   });
 }
