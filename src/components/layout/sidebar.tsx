@@ -10,6 +10,7 @@ import {
   Plus,
 } from "lucide-react";
 import { SidebarList } from "./sidebarList";
+import SidebarFooter from "./sidebarFooter";
 
 const navItems = [
   { href: ROUTES.HOME, Icon: LayoutDashboard, label: "대시보드" },
@@ -54,15 +55,7 @@ export function Sidebar() {
       </nav>
 
       {/* User footer */}
-      <div className="p-3 border-t border-gray-100">
-        <div className="flex items-center gap-2">
-          <div className="w-7 h-7 bg-gray-200 rounded-full shrink-0" />
-          <div className="min-w-0">
-            <p className="text-xs font-medium text-gray-700 truncate">홍길동</p>
-            <p className="text-[10px] text-gray-400 truncate">user@email.com</p>
-          </div>
-        </div>
-      </div>
+      <SidebarFooter />
     </aside>
   );
 }

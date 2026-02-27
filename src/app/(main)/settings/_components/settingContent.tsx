@@ -1,24 +1,21 @@
 ﻿"use client";
 
 import { useCategories } from "@/hooks/query/useCategories";
-import { useAuth, useLogout } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/useAuth";
 import { CategoryRow } from "@/types/database";
 import { User } from "lucide-react";
 import { SettingsModal } from "./modalIngredients";
 import { ProfileEditModal } from "./profileEditModal";
 import { CategoryCreateModal } from "./categoryCreateModal";
+import { CategoryUpdateModal } from "./categoryUpdateModal";
+import CategoryDeleteModal from "./categoryDeleteModal";
+import LogoutModal from "./logoutModal";
 
 export function SettingContent() {
-  const { data } = useAuth();
-  console.log("유저데이터", data);
+  const { data: userData } = useAuth();
+  console.log("유저데이터", userData);
   const { data: categoryData } = useCategories();
   console.log("카테고리데이터", categoryData);
-  const { mutate } = useLogout();
-
-  // 모달로 로그아웃 체크하기
-  const handleLogout = () => {
-    mutate();
-  };
 
   return (
     <div className="max-w-lg space-y-5">
@@ -32,8 +29,10 @@ export function SettingContent() {
             <User size={20} className="text-blue-500" />
           </div>
           <div>
-            <p className="text-sm font-semibold text-gray-700">손님</p>
-            <p className="text-xs text-gray-400">{data?.email}</p>
+            <p className="text-sm font-semibold text-gray-700">
+              {userData?.user_metadata.full_name ?? ""}
+            </p>
+            <p className="text-xs text-gray-400">{userData?.email}</p>
           </div>
           <div className="ml-auto">
             <SettingsModal.Root>
@@ -66,10 +65,39 @@ export function SettingContent() {
               <span className="text-xs font-medium text-gray-700 flex-1">
                 {cur.name}
               </span>
+              <SettingsModal.Root>
+                <SettingsModal.Trigger>
+                  <span className="text-xs text-blue-500 cursor-pointer">
+                    수정
+                  </span>
+                </SettingsModal.Trigger>
+                <SettingsModal.Portal title="카테고리 수정">
+                  <CategoryUpdateModal
+                    initialData={{
+                      id: cur.id,
+                      name: cur.name,
+                      icon: cur.icon,
+                      type: cur.type,
+                      color: cur.color,
+                    }}
+                  />
+                </SettingsModal.Portal>
+              </SettingsModal.Root>
 
-              <span className="text-xs text-blue-500 cursor-pointer">수정</span>
-
-              <span className="text-xs text-red-400 cursor-pointer">삭제</span>
+              <SettingsModal.Root>
+                <SettingsModal.Trigger>
+                  <span className="text-xs text-red-400 cursor-pointer">
+                    삭제
+                  </span>
+                </SettingsModal.Trigger>
+                <SettingsModal.Portal title="카테고리 삭제">
+                  <CategoryDeleteModal
+                    id={cur.id}
+                    name={cur.name}
+                    icon={cur.icon}
+                  />
+                </SettingsModal.Portal>
+              </SettingsModal.Root>
             </div>
           ))}
         </div>
@@ -103,12 +131,16 @@ export function SettingContent() {
             </div>
           </div> */}
           <div className="border-t border-gray-100 pt-2">
-            <button
-              onClick={handleLogout}
-              className="text-xs text-red-400 cursor-pointer"
-            >
-              로그아웃
-            </button>
+            <SettingsModal.Root>
+              <SettingsModal.Trigger>
+                <span className="text-xs text-red-400 cursor-pointer">
+                  로그아웃
+                </span>
+              </SettingsModal.Trigger>
+              <SettingsModal.Portal title="로그아웃">
+                <LogoutModal />
+              </SettingsModal.Portal>
+            </SettingsModal.Root>
           </div>
         </div>
       </div>

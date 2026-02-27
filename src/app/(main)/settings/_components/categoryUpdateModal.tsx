@@ -117,16 +117,18 @@ export function CategoryUpdateModal({ initialData }: CategoryModalProps) {
         </SettingsModal.Field>
 
         {/* 미리보기 */}
-        <div className="bg-gray-50 rounded-lg p-3 flex items-center gap-2">
-          <span className="text-sm">{form.icon}</span>
-          <span className="text-xs font-medium text-gray-700">
-            {form.name || "카테고리 이름"}
-          </span>
-          <div
-            className="w-3 h-3 rounded-full ml-auto"
-            style={{ backgroundColor: form.color }}
-          />
-        </div>
+        <SettingsModal.Field label="미리보기">
+          <div className="bg-gray-50 rounded-lg p-3 flex items-center gap-2">
+            <span className="text-sm">{form.icon}</span>
+            <span className="text-xs font-medium text-gray-700">
+              {form.name || "카테고리 이름"}
+            </span>
+            <div
+              className="w-3 h-3 rounded-full ml-auto"
+              style={{ backgroundColor: form.color }}
+            />
+          </div>
+        </SettingsModal.Field>
       </div>
 
       <SettingsModal.Footer>

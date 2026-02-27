@@ -115,3 +115,23 @@ export function useAuth() {
     },
   });
 }
+
+//유저 프로필 업데이트
+export function useUpdateProfile() {
+  const queryClient = useQueryClient();
+  const supabase = createClient();
+
+  return useMutation({
+    mutationFn: async (name: string) => {
+      const { data, error } = await supabase.auth.updateUser({
+        data: { full_name: name.trim() },
+      });
+
+      if (error) throw error;
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["user"] });
+    },
+  });
+}

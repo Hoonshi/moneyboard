@@ -2,28 +2,23 @@
 
 import { useState } from "react";
 import { SettingsModal } from "./modalIngredients";
-import { createClient } from "@/lib/supabase/client";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth, useUpdateProfile } from "@/hooks/useAuth";
 
 export function ProfileEditModal() {
   const { data: user } = useAuth();
   const [name, setName] = useState(user?.user_metadata?.full_name ?? "");
-  const [isLoading, setIsLoading] = useState(false);
+
+  const { mutate, isPending } = useUpdateProfile();
+
+  const { close } = SettingsModal.useSettingsModal();
 
   const handleSave = async () => {
     if (!name.trim()) return;
-    setIsLoading(true);
-
-    const supabase = createClient();
-    const { error } = await supabase.auth.updateUser({
-      data: { full_name: name.trim() },
+    mutate(name, {
+      onSuccess: () => {
+        close();
+      },
     });
-
-    setIsLoading(false);
-
-    if (!error) {
-      console.error("프로필 변경에 실패했습니다");
-    }
   };
 
   return (
@@ -47,11 +42,11 @@ export function ProfileEditModal() {
         </SettingsModal.Close>
         <button
           onClick={handleSave}
-          disabled={isLoading || !name.trim()}
+          disabled={isPending || !name.trim()}
           className="flex-1 px-4 py-2 text-sm text-white bg-main rounded-lg
               hover:opacity-90 disabled:opacity-50 cursor-pointer"
         >
-          {isLoading ? "저장 중..." : "저장"}
+          {isPending ? "저장 중..." : "저장"}
         </button>
       </SettingsModal.Footer>
     </>
