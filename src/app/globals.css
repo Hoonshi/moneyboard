@@ -16,3 +16,23 @@ body {
     background: linear-gradient(135deg, #4d9fff 0%, #3182f6 50%, #1b6cf2 100%);
   }
 }
+
+.recharts-rectangle:focus {
+  outline: none;
+}
+
+.recharts-layer:focus {
+  outline: none;
+}
+
+.recharts-rectangle {
+  stroke: none !important;
+}
+
+.recharts-wrapper:focus {
+  outline: none;
+}
+
+svg:focus {
+  outline: none;
+}
