@@ -17,7 +17,6 @@ export function BudgetForm({ isOpen, onClose }: BudgetFormProps) {
   const [amount, setAmount] = useState("");
 
   const { data: categories } = useCategories();
-  console.log(categories);
   const { mutate } = useUpsertBudget();
 
   const handleSubmit = (e: React.FormEvent) => {

@@ -39,7 +39,6 @@ export function Dashboard() {
     pageSize: 5,
   };
   const { data: transactionList } = useTransactionList(transactionData);
-  console.log("categoryData", categoryData);
 
   return (
     <div className="space-y-4">

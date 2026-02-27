@@ -15,7 +15,6 @@ import {
 
 export default function MonthlyTrendChart() {
   const { data } = useFetchMonthlyTrend(6);
-  console.log("MonthlyTrend data:", data);
 
   //x축에 날짜표시하려고쓴 변수
   const chartData = data?.map((item: MonthlyTrendType) => ({

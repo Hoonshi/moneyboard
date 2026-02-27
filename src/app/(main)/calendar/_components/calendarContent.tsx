@@ -9,18 +9,6 @@ import { useTransactionList } from "@/hooks/query/useTransactionList";
 import useMonthlySummary from "@/hooks/query/useMonthlySummary";
 import { ko } from "date-fns/locale";
 
-const DAY_DETAIL: Record<
-  number,
-  { name: string; cat: string; amount: string; neg: boolean }[]
-> = {
-  20: [
-    { name: "스타벅스", cat: "식비", amount: "-₩6,500", neg: true },
-    { name: "편의점", cat: "식비", amount: "-₩3,200", neg: true },
-    { name: "카카오택시", cat: "교통", amount: "-₩8,500", neg: true },
-  ],
-  15: [{ name: "월급", cat: "급여", amount: "+₩3,200,000", neg: false }],
-};
-
 const CAT_ICONS: Record<string, React.ElementType> = {
   식비: Utensils,
   교통: Car,
@@ -53,7 +41,6 @@ export function CalendarContent() {
     page: 1,
     pageSize: 50,
   });
-  console.log("transactions", transactions);
   //월별 요약용
   const { data: monthlySummary } = useMonthlySummary(year, month);
   const { data: totalTransactions } = useTransactionList({

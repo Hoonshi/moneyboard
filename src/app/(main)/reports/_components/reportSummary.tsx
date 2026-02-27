@@ -8,7 +8,6 @@ export default function ReportSummary() {
   const year = now.getFullYear();
 
   const { data } = useMonthlySummary(year, month);
-  console.log(data);
 
   const savaRating =
     data?.income - data?.expense > 0

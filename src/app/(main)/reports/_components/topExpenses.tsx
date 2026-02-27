@@ -40,10 +40,7 @@ export function TopExpenses() {
     pageSize: 5,
   };
   const { data } = useTransactionList(transactionData);
-  console.log(
-    "먼슬리서머리데이터",
-    data?.data?.filter((cur) => cur.type === "expense"),
-  );
+
   const expenseData = data?.data
     ?.filter((cur) => cur.type === "expense")
     .sort((a, b) => {

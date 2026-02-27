@@ -10,7 +10,6 @@ export function BudgetContent() {
   const month = now.getMonth() + 1;
 
   const { data: budget } = useBudget(year, month);
-  console.log(budget);
 
   const totalBudget = budget?.reduce((acc: number, cur: BudgetStatus) => {
     return acc + cur.budget_amount;
