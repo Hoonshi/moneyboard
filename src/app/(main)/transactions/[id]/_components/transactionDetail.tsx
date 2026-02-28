@@ -1,6 +1,5 @@
 "use client";
 
-import { FileText } from "lucide-react";
 import { useTransaction } from "@/hooks/query/useTransaction";
 
 interface TransactionDetailProps {
