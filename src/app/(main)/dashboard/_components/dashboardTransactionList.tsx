@@ -2,23 +2,10 @@
 
 import Link from "next/link";
 import { useTransactionList } from "@/hooks/query/useTransactionList";
-import type { TransactionListParams } from "@/types/transaction";
 
 export default function DashboardTransactionList() {
-  const transactionData: TransactionListParams = {
-    filter: {
-      type: "all",
-      categoryId: null,
-      search: "",
-    },
-    sort: {
-      key: "date",
-      direction: "desc",
-    },
-    page: 1,
-    pageSize: 5,
-  };
-  const { data: transactionList } = useTransactionList(transactionData);
+  //필터 정렬 설정 시 값 보내줘야함
+  const { data: transactionList } = useTransactionList();
 
   return (
     <div className="border border-gray-200 rounded-lg p-3">

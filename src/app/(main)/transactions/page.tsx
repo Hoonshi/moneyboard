@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Plus } from "lucide-react";
-import { TransactionListView } from "./_components/transactionListView";
+import { TransactionContent } from "./_components/transactionContent";
 import { ROUTES } from "@/constants/routes";
 
 export default function TransactionsPage() {
@@ -23,7 +23,7 @@ export default function TransactionsPage() {
         </Link>
       </header>
       <div className="flex-1 overflow-auto p-4 lg:p-5 pb-24 lg:pb-5">
-        <TransactionListView />
+        <TransactionContent />
       </div>
     </div>
   );
