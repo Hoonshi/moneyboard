@@ -11,7 +11,7 @@ export function CategorySection() {
 
   return (
     <div className="border border-gray-200 rounded-lg p-3">
-      <span className="text-xs font-mono text-gray-400 uppercase tracking-wider">
+      <span className="text-xs font-semibold text-gray-500  uppercase tracking-wider">
         카테고리 관리
       </span>
       <div className="mt-2 space-y-1.5">
@@ -19,12 +19,12 @@ export function CategorySection() {
           <CategoryItem key={category.id} category={category} />
         ))}
       </div>
-      <div className="mt-2">
+      <div className="mt-2 flex justify-end">
         <SettingsModal.Root>
           <SettingsModal.Trigger>
-            <span className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-main text-white cursor-pointer">
+            <div className="text-xs text-white bg-main rounded-md px-3 py-1.5 hover:bg-blue-600 cursor-pointer">
               + 카테고리 추가
-            </span>
+            </div>
           </SettingsModal.Trigger>
           <SettingsModal.Portal title="카테고리 추가">
             <CategoryCreateModal />
