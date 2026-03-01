@@ -8,7 +8,7 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { getQueryClient } from "@/lib/get-query-client";
 import {
   reportKeys,
-  calanderKey,
+  calendarKeys,
   dashboardKeys,
   transactionKeys,
 } from "@/lib/queryKey";
@@ -51,7 +51,7 @@ export default async function ReportsPage() {
       queryFn: () => fetchMonthlyTrend(6),
     }),
     queryClient.prefetchQuery({
-      queryKey: calanderKey.daily(year, month),
+      queryKey: calendarKeys.daily(year, month),
       queryFn: () => fetchDailyTotal(year, month),
     }),
     queryClient.prefetchQuery({

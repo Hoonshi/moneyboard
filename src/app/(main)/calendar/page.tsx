@@ -2,7 +2,7 @@ import { getQueryClient } from "@/lib/get-query-client";
 import { CalendarContent } from "./_components/calendarContent";
 import DateButton from "@/components/ui/dateButton";
 import { DEFAULT_DASHBOARD_PARAMS } from "@/constants/transactionList";
-import { calanderKey, dashboardKeys, transactionKeys } from "@/lib/queryKey";
+import { calendarKeys, dashboardKeys, transactionKeys } from "@/lib/queryKey";
 import type { TransactionListParams } from "@/types/transaction";
 import transactionList from "@/apis/transaction/transactionList";
 import monthlySummary from "@/apis/dashboard/monthlySummary";
@@ -64,7 +64,7 @@ export default async function CalendarPage() {
       queryFn: () => monthlySummary(year, month),
     }),
     queryClient.prefetchQuery({
-      queryKey: calanderKey.daily(year, month),
+      queryKey: calendarKeys.daily(year, month),
       queryFn: () => fetchDailyTotal(year, month),
     }),
   ]);

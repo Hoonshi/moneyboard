@@ -18,7 +18,7 @@ export const categoryKeys = {
   all: ["categories"] as const,
   list: (type?: string) => [...categoryKeys.all, type] as const,
   categorySummary: (year: number, month: number) =>
-    [...dashboardKeys.all, "categorySummary", year, month] as const,
+    [...categoryKeys.all, "categorySummary", year, month] as const,
 };
 
 //대시보드 쿼리키
@@ -37,10 +37,10 @@ export const budgetKeys = {
 };
 
 //캘린더 쿼리키 = dailyTotal 쿼리키
-export const calanderKey = {
-  all: ["calander"] as const,
+export const calendarKeys = {
+  all: ["calendar"] as const,
   daily: (year: number, month: number) =>
-    [...calanderKey.all, "daily", year, month] as const,
+    [...calendarKeys.all, "daily", year, month] as const,
 };
 
 //보고서(report) 쿼리키 = monthlyTrend 쿼리키
@@ -48,4 +48,6 @@ export const reportKeys = {
   all: ["report"] as const,
   monthlyTrend: (months: number) =>
     [...reportKeys.all, "monthlyTrend", months] as const,
+  dailyTotals: (year: number, month: number) =>
+    [...reportKeys.all, "dailyTotals", year, month] as const,
 };
