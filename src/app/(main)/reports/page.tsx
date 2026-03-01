@@ -19,7 +19,11 @@ import transactionList from "@/apis/transaction/transactionList";
 import type { TransactionListParams } from "@/types/transaction";
 import { DEFAULT_DASHBOARD_PARAMS } from "@/constants/transactionList";
 import { Suspense } from "react";
-import LoadingSpinner from "@/components/ui/loadingSpinner";
+import { ReportSummarySkeleton } from "@/components/skeleton/reportSummarySkeleton";
+import { MonthlyTrendChartSkeleton } from "@/components/skeleton/monthlyTrendChartSkeleton";
+import { MonthlyComparisonSkeleton } from "@/components/skeleton/monthlyComparisonSkeleton";
+import { DailyTrendChartSkeleton } from "@/components/skeleton/dailyTrendChartSkeleton";
+import { TopExpensesSkeleton } from "@/components/skeleton/topExpensesSkeleton";
 
 export default async function ReportsPage() {
   const queryClient = getQueryClient();
@@ -66,25 +70,27 @@ export default async function ReportsPage() {
 
   return (
     <div className="h-full flex flex-col bg-gray-50 lg:bg-white">
-      {/* 헤더 */}
       <ReportsHeader />
-
       <div className="flex-1 overflow-auto p-4 lg:p-5 pb-24 lg:pb-5">
         <div className="space-y-4">
           <HydrationBoundary state={dehydrate(queryClient)}>
-            <Suspense fallback={<LoadingSpinner />}>
-              {/*  요약 */}
+            <Suspense fallback={<ReportSummarySkeleton />}>
+              {/* 요약 */}
               <ReportSummary />
-
+            </Suspense>
+            <Suspense fallback={<MonthlyTrendChartSkeleton />}>
               {/* 차트 */}
               <MonthlyTrend />
-
-              {/* 전월대비 */}
+            </Suspense>
+            {/* 전월대비 */}
+            <Suspense fallback={<MonthlyComparisonSkeleton />}>
               <MonthlyComparison />
-
+            </Suspense>
+            <Suspense fallback={<DailyTrendChartSkeleton />}>
               {/* 일별 지출 추이 */}
               <DailyTrendChart />
-
+            </Suspense>
+            <Suspense fallback={<TopExpensesSkeleton />}>
               {/* 상위 지출 5개 */}
               <TopExpenses />
             </Suspense>

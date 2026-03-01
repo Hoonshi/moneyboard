@@ -7,6 +7,8 @@ import { getQueryClient } from "@/lib/get-query-client";
 import { transactionKeys } from "@/lib/queryKey";
 import transactionList from "@/apis/transaction/transactionList";
 import { DEFAULT_DASHBOARD_PARAMS } from "@/constants/transactionList";
+import { Suspense } from "react";
+import { TransactionContentSkeleton } from "@/components/skeleton/transactionContentSkeleton";
 
 export default async function TransactionsPage() {
   const queryClient = getQueryClient();
@@ -36,7 +38,9 @@ export default async function TransactionsPage() {
       </header>
       <div className="flex-1 overflow-auto p-4 lg:p-5 pb-24 lg:pb-5">
         <HydrationBoundary state={dehydrate(queryClient)}>
-          <TransactionContent />
+          <Suspense fallback={<TransactionContentSkeleton />}>
+            <TransactionContent />
+          </Suspense>
         </HydrationBoundary>
       </div>
     </div>

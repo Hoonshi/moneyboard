@@ -6,7 +6,7 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { categoryKeys } from "@/lib/queryKey";
 import fetchReportCategories from "@/apis/categories/fetchReportCategories";
 import { Suspense } from "react";
-import LoadingSpinner from "@/components/ui/loadingSpinner";
+import { CategorySectionSkeleton } from "@/components/skeleton/categorySectionSkeleton";
 
 export default async function SettingsPage() {
   const queryClient = getQueryClient();
@@ -31,7 +31,7 @@ export default async function SettingsPage() {
       <div className="flex-1 overflow-auto p-4 lg:p-5 pb-24 lg:pb-5">
         <div className="max-w-lg space-y-5">
           <ProfileSection />
-          <Suspense fallback={<LoadingSpinner />}>
+          <Suspense fallback={<CategorySectionSkeleton />}>
             <HydrationBoundary state={dehydrate(queryClient)}>
               <CategorySection />
             </HydrationBoundary>

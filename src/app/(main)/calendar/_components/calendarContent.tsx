@@ -1,10 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useDateStore } from "@/stores/dateStore";
 import { CalendarSection } from "./calendarSection";
 import { DayDetailSection } from "./dayDetailSection";
 import { MonthlySummarySection } from "./monthlySummarySection";
+import { CalendarSectionSkeleton } from "@/components/skeleton/calendarSectionSkeleton";
+import { DayDetailSectionSkeleton } from "@/components/skeleton/dayDetailSectionSkeleton";
+import { MonthlySummarySectionSkeleton } from "@/components/skeleton/monthlySummarySectionSkeleton";
 
 export function CalendarContent() {
   const [selectedDay, setSelectedDay] = useState<Date | undefined>(new Date());
@@ -20,10 +23,16 @@ export function CalendarContent() {
 
   return (
     <div className="space-y-4">
-      <CalendarSection selectedDay={selectedDay} onSelect={setSelectedDay} />
+      <Suspense fallback={<CalendarSectionSkeleton />}>
+        <CalendarSection selectedDay={selectedDay} onSelect={setSelectedDay} />
+      </Suspense>
       <div className="grid grid-cols-3 gap-4">
-        <DayDetailSection selectedDay={selectedDay} />
-        <MonthlySummarySection />
+        <Suspense fallback={<DayDetailSectionSkeleton />}>
+          <DayDetailSection selectedDay={selectedDay} />
+        </Suspense>
+        <Suspense fallback={<MonthlySummarySectionSkeleton />}>
+          <MonthlySummarySection />
+        </Suspense>
       </div>
     </div>
   );

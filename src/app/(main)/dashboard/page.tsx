@@ -2,18 +2,17 @@ import DashboardSummary from "./_components/dashboardSummary";
 import DashboardChart from "./_components/dashboardChart";
 import DashboardTransactionList from "./_components/dashboardTransactionList";
 import DashboardHeader from "./_components/dashboardHeader";
-// prefetch를 위한 모듈
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { getQueryClient } from "@/lib/get-query-client";
-import { dashboardKeys } from "@/lib/queryKey";
-import { categoryKeys } from "@/lib/queryKey";
+import { dashboardKeys, categoryKeys, transactionKeys } from "@/lib/queryKey";
 import monthlySummary from "@/apis/dashboard/monthlySummary";
 import categorySummary from "@/apis/dashboard/categorySummary";
-import { transactionKeys } from "@/lib/queryKey";
 import transactionList from "@/apis/transaction/transactionList";
 import { DEFAULT_DASHBOARD_PARAMS } from "@/constants/transactionList";
 import { Suspense } from "react";
-import LoadingSpinner from "@/components/ui/loadingSpinner";
+import { DashboardSummarySkeleton } from "@/components/skeleton/dashboardSummarySkeleton";
+import { DashboardChartSkeleton } from "@/components/skeleton/dashboardChartSkeleton";
+import { DashboardTransactionListSkeleton } from "@/components/skeleton/dashboardTransactionListSkeleton";
 
 export default async function DashboardPage() {
   const queryClient = getQueryClient();
@@ -39,22 +38,21 @@ export default async function DashboardPage() {
 
   return (
     <div className="h-full flex flex-col bg-gray-50 lg:bg-white">
-      {/* 대시보드헤더 */}
       <DashboardHeader />
-
       <div className="flex-1 overflow-auto p-4 lg:p-5 pb-24 lg:pb-5">
         <div className="space-y-4">
           <HydrationBoundary state={dehydrate(queryClient)}>
-            <Suspense fallback={<LoadingSpinner />}>
-              {/* 요약 카드 */}
+            <Suspense fallback={<DashboardSummarySkeleton />}>
               <DashboardSummary />
-              {/* 차트 및 카테고리*/}
+            </Suspense>
+            <Suspense fallback={<DashboardChartSkeleton />}>
               <DashboardChart />
-              {/*최근거래내역*/}
+            </Suspense>
+            <Suspense fallback={<DashboardTransactionListSkeleton />}>
               <DashboardTransactionList />
             </Suspense>
           </HydrationBoundary>
-        </div>{" "}
+        </div>
       </div>
     </div>
   );
