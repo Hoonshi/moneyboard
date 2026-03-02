@@ -24,7 +24,7 @@ const navItems = [
 
 export function Sidebar() {
   return (
-    <aside className="hidden lg:flex flex-col w-52 shrink-0 bg-white border-r border-gray-200 h-full">
+    <aside className="hidden md:flex flex-col w-52 shrink-0 bg-white border-r border-gray-200 h-full">
       {/* Logo */}
       <div className="p-4 h-17 border-b border-gray-100">
         <Link

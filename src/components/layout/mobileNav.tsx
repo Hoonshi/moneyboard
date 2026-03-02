@@ -28,7 +28,7 @@ export function MobileNav() {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 lg:hidden bg-white border-t border-gray-100 px-2 pb-1 pt-1.5 flex items-end justify-around z-50">
+    <div className="fixed bottom-0 left-0 right-0 md:hidden bg-white border-t border-gray-100 px-2 pb-1 pt-1.5 flex items-end justify-around z-50">
       {tabs.map((tab) =>
         tab.isCenter ? (
           <Link
