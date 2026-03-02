@@ -45,10 +45,10 @@ export function TransactionContent() {
         filter={filter}
         onFilterChange={handleFilterChange}
       />
-      <TransactionList data={data?.data ?? []} />
+      <TransactionList data={data.data} />
       <TransactionPagination
         page={page}
-        totalPages={data?.totalPages ?? 0}
+        totalPages={data.totalPages}
         onPageChange={setPage}
       />
     </div>

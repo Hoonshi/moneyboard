@@ -12,7 +12,7 @@ export function BudgetList() {
 
   return (
     <div className="space-y-2.5">
-      {budget?.map((b: BudgetStatus) => {
+      {budget.map((b: BudgetStatus) => {
         const pct =
           b.budget_amount > 0
             ? Math.round((b.spent / b.budget_amount) * 100)

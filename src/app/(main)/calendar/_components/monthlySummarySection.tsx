@@ -33,27 +33,25 @@ export function MonthlySummarySection() {
         <div>
           <p className="text-[10px] text-gray-400">수입</p>
           <p className="text-sm font-bold text-gray-800">
-            {monthlySummary?.income.toLocaleString()}원
+            {monthlySummary.income.toLocaleString()}원
           </p>
         </div>
         <div>
           <p className="text-[10px] text-gray-400">지출</p>
           <p className="text-sm font-bold text-gray-800">
-            {monthlySummary?.expense.toLocaleString()}원
+            {monthlySummary.expense.toLocaleString()}원
           </p>
         </div>
         <div>
           <p className="text-[10px] text-gray-400">거래 수</p>
           <p className="text-sm font-bold text-gray-800">
-            {totalTransactions?.totalCount || 0}건
+            {totalTransactions.totalCount}건
           </p>
         </div>
         <div className="pt-2 border-t border-gray-100">
           <p className="text-[10px] text-gray-400">합계</p>
           <p className="text-sm font-bold text-gray-800">
-            {monthlySummary &&
-              (monthlySummary.income - monthlySummary.expense).toLocaleString()}
-            원
+            {(monthlySummary.income - monthlySummary.expense).toLocaleString()}원
           </p>
         </div>
       </div>

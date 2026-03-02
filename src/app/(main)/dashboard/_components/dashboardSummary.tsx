@@ -13,19 +13,19 @@ export default function DashboardSummary() {
       {[
         {
           label: "이번 달 수입",
-          amount: monthlyData?.income || 0,
+          amount: monthlyData.income,
           color: "text-gray-800",
           bg: "bg-[#e7f5ff]",
         },
         {
           label: "이번 달 지출",
-          amount: monthlyData?.expense || 0,
+          amount: monthlyData.expense,
           color: "text-gray-800",
           bg: "bg-[#fff4e6]",
         },
         {
           label: "잔액",
-          amount: monthlyData?.balance || 0,
+          amount: monthlyData.balance,
           color: "text-gray-800",
           bg: "bg-[#ebfbee]",
         },

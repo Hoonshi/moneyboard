@@ -9,13 +9,14 @@ export function BudgetSummary() {
   const month = useDateStore((state) => state.month);
   const { data: budget } = useBudget(year, month);
 
-  const totalBudget =
-    budget?.reduce(
-      (acc: number, cur: BudgetStatus) => acc + cur.budget_amount,
-      0,
-    ) ?? 0;
-  const totalSpent =
-    budget?.reduce((acc: number, cur: BudgetStatus) => acc + cur.spent, 0) ?? 0;
+  const totalBudget = budget.reduce(
+    (acc: number, cur: BudgetStatus) => acc + cur.budget_amount,
+    0,
+  );
+  const totalSpent = budget.reduce(
+    (acc: number, cur: BudgetStatus) => acc + cur.spent,
+    0,
+  );
   const totalRemaining = totalBudget - totalSpent;
   const overallPercentage =
     totalBudget > 0 ? Math.round((totalSpent / totalBudget) * 100) : 0;

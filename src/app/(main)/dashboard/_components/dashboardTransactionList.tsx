@@ -13,7 +13,7 @@ export default function DashboardTransactionList() {
         최근 거래
       </span>
       <div className="mt-2 space-y-1">
-        {transactionList?.data?.map((tx) => (
+        {transactionList.data.map((tx) => (
           <Link
             href={`/transactions/${tx.id}`}
             key={tx.id}

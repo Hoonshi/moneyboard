@@ -10,7 +10,7 @@ export default function ReportSummary() {
   const { data } = useMonthlySummary(year, month);
 
   const savaRating =
-    data?.income - data?.expense > 0
+    data.income - data.expense > 0
       ? `${Math.round(((data.income - data.expense) / data.income) * 100)}%`
       : "-";
 
@@ -19,13 +19,13 @@ export default function ReportSummary() {
       {[
         {
           label: "총 수입",
-          amount: `${data?.income.toLocaleString()} 원`,
+          amount: `${data.income.toLocaleString()} 원`,
           color: "text-gray-800",
           bg: "bg-[#e7f5ff]",
         },
         {
           label: "총 지출",
-          amount: `${data?.expense.toLocaleString()} 원`,
+          amount: `${data.expense.toLocaleString()} 원`,
           color: "text-gray-800",
           bg: "bg-[#fff4e6]",
         },

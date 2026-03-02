@@ -39,7 +39,7 @@ export default function DashboardChart() {
               }
               fontSize={12}
             >
-              {categoryData?.map((item: CategoryData) => (
+              {categoryData.map((item: CategoryData) => (
                 <Cell stroke="none" key={item.id} fill={item.color} />
               ))}
             </Pie>
@@ -51,7 +51,7 @@ export default function DashboardChart() {
           카테고리별 지출
         </span>
         <div className="mt-3 space-y-2">
-          {categoryData?.map((item: CategoryData) => (
+          {categoryData.map((item: CategoryData) => (
             <div key={item.id} className="flex items-center gap-2">
               <span className="text-xs w-14 text-gray-600">{item.name}</span>
               <div className="flex-1 bg-gray-100 rounded-full h-2">

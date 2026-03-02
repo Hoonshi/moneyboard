@@ -48,7 +48,7 @@ export function DayDetailSection({ selectedDay }: DayDetailSectionProps) {
       </p>
       {selectedDay ? (
         <div className="space-y-2">
-          {transactions?.data?.map((cur, i) => {
+          {transactions.data.map((cur, i) => {
             const Icon = CAT_ICONS[cur.category.icon] ?? Utensils;
             return (
               <div

@@ -33,8 +33,8 @@ export function TopExpenses() {
   };
   const { data } = useTransactionList(transactionData);
 
-  const expenseData = data?.data
-    ?.filter((cur) => cur.type === "expense")
+  const expenseData = data.data
+    .filter((cur) => cur.type === "expense")
     .sort((a, b) => {
       return b.amount - a.amount;
     });
@@ -46,7 +46,7 @@ export function TopExpenses() {
           가장 큰 지출 TOP 5
         </p>
         <div className="space-y-1">
-          {expenseData?.map((item, idx) => (
+          {expenseData.map((item, idx) => (
             <div
               key={item.id}
               className="flex items-center gap-3 py-2 border-b border-gray-50 last:border-0"
