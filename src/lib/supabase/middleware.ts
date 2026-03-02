@@ -1,5 +1,7 @@
-import { createServerClient } from '@supabase/ssr';
-import { NextResponse, type NextRequest } from 'next/server';
+import { createServerClient } from "@supabase/ssr";
+import { NextResponse, type NextRequest } from "next/server";
+
+const AUTH_PAGES = ["/login", "/signup"];
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request });
@@ -25,6 +27,21 @@ export async function updateSession(request: NextRequest) {
     },
   );
 
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const { pathname } = request.nextUrl;
+
+  console.log("middleware user:", user); // null이면 getUser() 문제
+  console.log("pathname:", pathname);
+
+  if (!user && !AUTH_PAGES.includes(pathname)) {
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
+
+  if (user && AUTH_PAGES.includes(pathname)) {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
+  }
+
   return supabaseResponse;
 }
