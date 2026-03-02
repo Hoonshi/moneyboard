@@ -27,7 +27,7 @@ export function useCreateTransaction({
       createTransaction(newTransaction),
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: transactionKeys.lists() });
+      queryClient.invalidateQueries({ queryKey: transactionKeys.all });
       queryClient.invalidateQueries({ queryKey: dashboardKeys.all });
       queryClient.invalidateQueries({ queryKey: budgetKeys.list(year, month) });
       queryClient.invalidateQueries({ queryKey: reportKeys.all });
