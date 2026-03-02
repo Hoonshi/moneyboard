@@ -17,7 +17,14 @@ export default function RootLayout({
     <html lang="ko">
       <body className="antialiased">
         <Provider>{children}</Provider>
-        <Toaster />
+        <Toaster
+          position="bottom-center"
+          toastOptions={{
+            style: {
+              fontSize: "12px",
+            },
+          }}
+        />
       </body>
     </html>
   );
