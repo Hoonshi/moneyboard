@@ -30,16 +30,20 @@ export function ProfileSection() {
           <p className="text-xs text-gray-400">{user?.email}</p>
         </div>
         <div className="ml-auto">
-          <SettingsModal.Root>
-            <SettingsModal.Trigger>
-              <span className="px-3 py-2 rounded-full text-[11px] font-medium bg-gray-100 text-gray-600 cursor-pointer">
-                프로필 수정
-              </span>
-            </SettingsModal.Trigger>
-            <SettingsModal.Portal title="프로필 수정">
-              <ProfileEditModal />
-            </SettingsModal.Portal>
-          </SettingsModal.Root>
+          {user ? (
+            <SettingsModal.Root>
+              <SettingsModal.Trigger>
+                <span className="px-3 py-2 rounded-full text-[11px] font-medium bg-gray-100 text-gray-600 cursor-pointer">
+                  프로필 수정
+                </span>
+              </SettingsModal.Trigger>
+              <SettingsModal.Portal title="프로필 수정">
+                <ProfileEditModal />
+              </SettingsModal.Portal>
+            </SettingsModal.Root>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

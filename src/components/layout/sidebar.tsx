@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { SidebarList } from "./sidebarList";
 import SidebarFooter from "./sidebarFooter";
+import NewTransactionButton from "../ui/newTransactionButton";
 
 const navItems = [
   { href: ROUTES.HOME, Icon: LayoutDashboard, label: "대시보드" },
@@ -38,14 +39,7 @@ export function Sidebar() {
       </div>
 
       {/* Quick add */}
-      <div className="px-3 pt-3">
-        <Link
-          href={ROUTES.TRANSACTION_NEW}
-          className="flex items-center justify-center gap-1 w-full py-2 bg-main text-white text-xs font-semibold rounded-lg hover:bg-blue-600 transition-colors"
-        >
-          <Plus size={13} strokeWidth={2.5} /> 새 거래
-        </Link>
-      </div>
+      <NewTransactionButton />
 
       {/* Nav */}
       <nav className="flex-1 p-2 pt-3 space-y-0.5">
