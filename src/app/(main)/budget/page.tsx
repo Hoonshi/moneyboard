@@ -7,6 +7,7 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { Suspense } from "react";
 import { BudgetSummarySkeleton } from "@/components/skeleton/budgetSummarySkeleton";
 import { BudgetListSkeleton } from "@/components/skeleton/budgetListSkeleton";
+import { budgetKeys } from "@/lib/queryKey";
 
 export default async function BudgetPage() {
   const queryClient = getQueryClient();
@@ -16,7 +17,7 @@ export default async function BudgetPage() {
   const month = now.getMonth() + 1;
 
   await queryClient.prefetchQuery({
-    queryKey: ["budget", year, month],
+    queryKey: budgetKeys.list(year, month),
     queryFn: () => fetchBudget(year, month),
   });
 
