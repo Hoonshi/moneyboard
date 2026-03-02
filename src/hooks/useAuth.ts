@@ -3,6 +3,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import toast from "react-hot-toast";
 
 // 이메일 로그인
 export function useLogin() {
@@ -27,6 +28,9 @@ export function useLogin() {
     onSuccess: () => {
       router.push("/");
       router.refresh();
+    },
+    onError: () => {
+      toast.error("아이디 또는 비밀번호를 확인해주세요");
     },
   });
 }
