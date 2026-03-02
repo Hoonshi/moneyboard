@@ -33,7 +33,7 @@ export function ProfileSection() {
           {user ? (
             <SettingsModal.Root>
               <SettingsModal.Trigger>
-                <span className="px-3 py-2 rounded-full text-[11px] font-medium bg-gray-100 text-gray-600 cursor-pointer">
+                <span className="cursor-pointer px-2.5 py-1 rounded-full text-[11px] font-medium bg-main text-white lg:rounded-md lg:px-3 lg:py-1.5 lg:text-xs">
                   프로필 수정
                 </span>
               </SettingsModal.Trigger>
