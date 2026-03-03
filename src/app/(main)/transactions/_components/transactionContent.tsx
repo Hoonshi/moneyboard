@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTransactionList } from "@/hooks/query/useTransactionList";
 import type { TransactionFilter, TransactionSort } from "@/types/transaction";
 import { TransactionFilterBar } from "./transactionFilterBar";
@@ -27,13 +27,6 @@ export function TransactionContent() {
     page,
     pageSize,
   });
-
-  useEffect(() => {
-    setTimeout(() => {
-      setPage(1);
-    }, 0);
-  }, [filter, sort]);
-
   const handleFilterChange = (newFilter: TransactionFilter) => {
     setFilter(newFilter);
     setPage(1);

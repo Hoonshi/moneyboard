@@ -33,9 +33,7 @@ export function CategorySection() {
               <CategoryCreateModal />
             </SettingsModal.Portal>
           </SettingsModal.Root>
-        ) : (
-          ""
-        )}
+        ) : null}
       </div>
     </div>
   );

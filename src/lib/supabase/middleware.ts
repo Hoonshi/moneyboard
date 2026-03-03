@@ -32,9 +32,6 @@ export async function updateSession(request: NextRequest) {
   } = await supabase.auth.getUser();
   const { pathname } = request.nextUrl;
 
-  console.log("middleware user:", user); // null이면 getUser() 문제
-  console.log("pathname:", pathname);
-
   if (!user && !AUTH_PAGES.includes(pathname)) {
     return NextResponse.redirect(new URL("/login", request.url));
   }

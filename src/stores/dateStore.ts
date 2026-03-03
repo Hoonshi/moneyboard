@@ -26,6 +26,6 @@ export const useDateStore = create<DateStore>((set) => ({
     });
   },
   reset: () => {
-    set({ year: now.getFullYear(), month: now.getMonth() + 1 });
+    set({ year: now.getFullYear(), month: new Date().getMonth() + 1 });
   },
 }));

@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/client";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import type {
   Transaction,
   TransactionListParams,
@@ -6,10 +6,9 @@ import type {
 } from "@/types/transaction";
 
 export default async function transactionList(
+  supabase: SupabaseClient,
   params: TransactionListParams,
 ): Promise<TransactionListResponse> {
-  const supabase = createClient();
-
   const { filter, sort, page, pageSize } = params;
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;

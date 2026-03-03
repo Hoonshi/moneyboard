@@ -1,7 +1,10 @@
-import { createClient } from "@/lib/supabase/client";
+import type { SupabaseClient } from "@supabase/supabase-js";
 
-export async function fetchDailyTotal(year: number, month: number) {
-  const supabase = createClient();
+export async function fetchDailyTotal(
+  supabase: SupabaseClient,
+  year: number,
+  month: number,
+) {
   const { data, error } = await supabase.rpc("get_daily_totals", {
     p_year: year,
     p_month: month,

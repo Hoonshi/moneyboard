@@ -3,7 +3,7 @@
 "use client";
 
 import { useState } from "react";
-import { useAuth, useLogin, useOAuthLogin } from "@/hooks/useAuth";
+import { useLogin } from "@/hooks/useAuth";
 import Link from "next/link";
 
 export default function LoginPage() {
