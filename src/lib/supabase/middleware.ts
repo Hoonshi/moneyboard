@@ -32,9 +32,10 @@ export async function updateSession(request: NextRequest) {
   } = await supabase.auth.getUser();
   const { pathname } = request.nextUrl;
 
-  if (!user && !AUTH_PAGES.includes(pathname)) {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
+  // 나중에 대시보드 만들면 그때 주석제거
+  // if (!user && !AUTH_PAGES.includes(pathname)) {
+  //   return NextResponse.redirect(new URL("/login", request.url));
+  // }
 
   if (user && AUTH_PAGES.includes(pathname)) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
