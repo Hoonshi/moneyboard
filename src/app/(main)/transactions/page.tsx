@@ -29,14 +29,10 @@ export default async function TransactionsPage() {
             전체 수입/지출 내역
           </p>
         </div>
-        {/* <Link
-          href={ROUTES.TRANSACTION_NEW}
-          className="flex items-center gap-1 text-xs text-white bg-main rounded-md px-3 py-1.5 hover:bg-blue-600"
-        >
-          <Plus size={13} strokeWidth={2.5} /> 새 거래
-        </Link> */}
+
         <NewTransactionButton className="px-3 py-1.5" />
       </header>
+
       <div className="flex-1 overflow-auto p-4 lg:p-5 pb-24 lg:pb-5">
         <HydrationBoundary state={dehydrate(queryClient)}>
           <Suspense fallback={<TransactionContentSkeleton />}>

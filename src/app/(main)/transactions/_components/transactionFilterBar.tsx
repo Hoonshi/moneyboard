@@ -1,6 +1,6 @@
 "use client";
 
-import { Search } from "lucide-react";
+import { Search, CalendarDays } from "lucide-react";
 import type { TransactionFilter } from "@/types/transaction";
 
 type Props = {
@@ -31,6 +31,27 @@ export function TransactionFilterBar({ filter, onFilterChange }: Props) {
         ))}
       </div>
       <div className="flex-1" />
+      <div className="flex items-center gap-1.5 bg-gray-50 border border-gray-200 rounded-md px-2.5 py-1.5">
+        <CalendarDays size={12} className="text-gray-400 shrink-0" />
+        <input
+          type="month"
+          className="text-xs text-gray-500 focus:ring-0 focus:outline-none bg-transparent cursor-pointer"
+          value={filter.startDate ? filter.startDate.slice(0, 7) : ""}
+          onChange={(e) => {
+            if (!e.target.value) {
+              onFilterChange({ ...filter, startDate: null, endDate: null });
+              return;
+            }
+            const [year, month] = e.target.value.split("-").map(Number);
+            const lastDay = new Date(year, month, 0).getDate();
+            onFilterChange({
+              ...filter,
+              startDate: `${e.target.value}-01`,
+              endDate: `${e.target.value}-${String(lastDay).padStart(2, "0")}`,
+            });
+          }}
+        />
+      </div>
       <div className="flex items-center gap-1.5 bg-gray-50 border border-gray-200 rounded-md px-2.5 py-1.5 w-40">
         <Search size={12} className="text-gray-400" />
         <input

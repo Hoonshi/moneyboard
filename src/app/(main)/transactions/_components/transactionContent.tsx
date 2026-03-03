@@ -21,7 +21,7 @@ export function TransactionContent() {
     direction: "desc",
   });
 
-  const { data, isPending, error } = useTransactionList({
+  const { data } = useTransactionList({
     filter,
     sort,
     page,
@@ -38,7 +38,9 @@ export function TransactionContent() {
         filter={filter}
         onFilterChange={handleFilterChange}
       />
+
       <TransactionList data={data.data} />
+
       <TransactionPagination
         page={page}
         totalPages={data.totalPages}
