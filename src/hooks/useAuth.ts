@@ -26,7 +26,7 @@ export function useLogin() {
       return data;
     },
     onSuccess: () => {
-      router.push("/");
+      router.replace("/dashboard");
       router.refresh();
     },
     onError: () => {
@@ -59,7 +59,7 @@ export function useSignUp() {
       return data;
     },
     onSuccess: () => {
-      router.push("/dashboard");
+      router.replace("/dashboard");
       router.refresh();
     },
   });

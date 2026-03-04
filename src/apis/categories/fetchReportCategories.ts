@@ -1,8 +1,9 @@
 import { createClient } from "@/lib/supabase/client";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { TransactionType } from "@/types/database";
 
-export default async function fetchReportCategories(type?: TransactionType) {
-  const supabase = createClient();
+export default async function fetchReportCategories(type?: TransactionType, client?: SupabaseClient) {
+  const supabase = client ?? createClient();
 
   let query = supabase.from("categories").select("*").order("sort_order");
 

@@ -8,9 +8,11 @@ import transactionList from "@/apis/transaction/transactionList";
 import monthlySummary from "@/apis/dashboard/monthlySummary";
 import { fetchDailyTotal } from "@/apis/calander/fetchDailyTotal";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { createClient as createServerClient } from "@/lib/supabase/server";
 
 export default async function CalendarPage() {
   const queryClient = getQueryClient();
+  const supabase = await createServerClient();
 
   const now = new Date();
   const year = now.getFullYear();
@@ -51,23 +53,23 @@ export default async function CalendarPage() {
   await Promise.all([
     queryClient.prefetchQuery({
       queryKey: transactionKeys.list(DEFAULT_DASHBOARD_PARAMS),
-      queryFn: () => transactionList(DEFAULT_DASHBOARD_PARAMS),
+      queryFn: () => transactionList(DEFAULT_DASHBOARD_PARAMS, supabase),
     }),
     queryClient.prefetchQuery({
       queryKey: transactionKeys.list(totalTransaction),
-      queryFn: () => transactionList(totalTransaction),
+      queryFn: () => transactionList(totalTransaction, supabase),
     }),
     queryClient.prefetchQuery({
       queryKey: transactionKeys.list(todayTransaction),
-      queryFn: () => transactionList(todayTransaction),
+      queryFn: () => transactionList(todayTransaction, supabase),
     }),
     queryClient.prefetchQuery({
       queryKey: dashboardKeys.monthlySummary(year, month),
-      queryFn: () => monthlySummary(year, month),
+      queryFn: () => monthlySummary(year, month, supabase),
     }),
     queryClient.prefetchQuery({
       queryKey: calendarKeys.daily(year, month),
-      queryFn: () => fetchDailyTotal(year, month),
+      queryFn: () => fetchDailyTotal(year, month, supabase),
     }),
   ]);
 

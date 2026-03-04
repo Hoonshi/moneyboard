@@ -8,9 +8,11 @@ import { Suspense } from "react";
 import { BudgetSummarySkeleton } from "@/components/skeleton/budgetSummarySkeleton";
 import { BudgetListSkeleton } from "@/components/skeleton/budgetListSkeleton";
 import { budgetKeys } from "@/lib/queryKey";
+import { createClient as createServerClient } from "@/lib/supabase/server";
 
 export default async function BudgetPage() {
   const queryClient = getQueryClient();
+  const supabase = await createServerClient();
 
   const now = new Date();
   const year = now.getFullYear();
@@ -18,7 +20,7 @@ export default async function BudgetPage() {
 
   await queryClient.prefetchQuery({
     queryKey: budgetKeys.list(year, month),
-    queryFn: () => fetchBudget(year, month),
+    queryFn: () => fetchBudget(year, month, supabase),
   });
 
   return (
