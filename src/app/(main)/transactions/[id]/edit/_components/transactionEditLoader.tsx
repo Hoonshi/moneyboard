@@ -2,8 +2,16 @@
 
 "use client";
 
+import dynamic from "next/dynamic";
 import { useTransaction } from "@/hooks/query/useTransaction";
-import { TransactionForm } from "@/app/(main)/transactions/new/_components/transactionForm";
+
+const TransactionForm = dynamic(
+  () =>
+    import("@/app/(main)/transactions/new/_components/transactionForm").then(
+      (mod) => mod.TransactionForm,
+    ),
+  { ssr: false },
+);
 
 export default function TransactionEditLoader({ id }: { id: string }) {
   const { data, isPending } = useTransaction(id);

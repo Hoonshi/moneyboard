@@ -1,8 +1,10 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { SettingsModal } from "./modals/modalIngredients";
-import LogoutModal from "./modals/logoutModal";
 import { useAuth } from "@/hooks/useAuth";
+
+const LogoutModal = dynamic(() => import("./modals/logoutModal"));
 
 export function AccountSection() {
   const { data: user } = useAuth();

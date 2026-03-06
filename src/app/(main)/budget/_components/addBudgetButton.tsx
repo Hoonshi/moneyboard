@@ -1,8 +1,12 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import { BudgetForm } from "./budgetForm";
+
+const BudgetForm = dynamic(
+  () => import("./budgetForm").then((mod) => mod.BudgetForm),
+);
 
 export default function AddBudgetButton() {
   const [isOpen, setIsOpen] = useState(false);

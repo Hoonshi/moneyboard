@@ -1,11 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { CategoryRow } from "@/types/database";
 import { SettingsModal } from "./modals/modalIngredients";
-import { CategoryCreateModal } from "./modals/categoryCreateModal";
 import { CategoryItem } from "./categoryItem";
 import { useCategories } from "@/hooks/query/useCategories";
 import { useAuth } from "@/hooks/useAuth";
+
+const CategoryCreateModal = dynamic(
+  () =>
+    import("./modals/categoryCreateModal").then(
+      (mod) => mod.CategoryCreateModal,
+    ),
+);
 
 export function CategorySection() {
   const { data: categoryData } = useCategories();

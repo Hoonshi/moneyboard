@@ -1,7 +1,16 @@
+import dynamic from "next/dynamic";
 import { CategoryRow } from "@/types/database";
 import { SettingsModal } from "./modals/modalIngredients";
-import { CategoryUpdateModal } from "./modals/categoryUpdateModal";
-import CategoryDeleteModal from "./modals/categoryDeleteModal";
+
+const CategoryUpdateModal = dynamic(
+  () =>
+    import("./modals/categoryUpdateModal").then(
+      (mod) => mod.CategoryUpdateModal,
+    ),
+);
+const CategoryDeleteModal = dynamic(
+  () => import("./modals/categoryDeleteModal"),
+);
 
 interface Props {
   category: CategoryRow;

@@ -1,9 +1,23 @@
-import { MonthlyComparison } from "./_components/monthlyComparison";
-import { DailyTrendChart } from "./_components/dailyTrendChart";
-import { TopExpenses } from "./_components/topExpenses";
-import ReportSummary from "./_components/reportSummary";
-import MonthlyTrend from "./_components/monthlyTrendChart";
+import dynamic from "next/dynamic";
 import ReportsHeader from "./_components/reportsHeader";
+
+const MonthlyComparison = dynamic(
+  () =>
+    import("./_components/monthlyComparison").then(
+      (mod) => mod.MonthlyComparison,
+    ),
+);
+const DailyTrendChart = dynamic(
+  () =>
+    import("./_components/dailyTrendChart").then((mod) => mod.DailyTrendChart),
+);
+const TopExpenses = dynamic(
+  () => import("./_components/topExpenses").then((mod) => mod.TopExpenses),
+);
+const ReportSummary = dynamic(() => import("./_components/reportSummary"));
+const MonthlyTrend = dynamic(
+  () => import("./_components/monthlyTrendChart"),
+);
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { getQueryClient } from "@/lib/get-query-client";
 import {

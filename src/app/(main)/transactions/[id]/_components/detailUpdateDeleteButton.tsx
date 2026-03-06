@@ -1,8 +1,12 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { SettingsModal } from "@/app/(main)/settings/_components/modals/modalIngredients";
-import TransactionDeleteModal from "./transactionDeleteModal";
+
+const TransactionDeleteModal = dynamic(
+  () => import("./transactionDeleteModal"),
+);
 
 export default function DetailUpdateDeleteButton({ id }: { id: string }) {
   const router = useRouter();

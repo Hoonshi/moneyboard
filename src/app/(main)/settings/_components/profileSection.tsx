@@ -1,9 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { User as UserIcon } from "lucide-react";
 import { SettingsModal } from "./modals/modalIngredients";
-import { ProfileEditModal } from "./modals/profileEditModal";
 import { useAuth } from "@/hooks/useAuth";
+
+const ProfileEditModal = dynamic(
+  () =>
+    import("./modals/profileEditModal").then((mod) => mod.ProfileEditModal),
+);
 
 export function ProfileSection() {
   const { data: user } = useAuth();
