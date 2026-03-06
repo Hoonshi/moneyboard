@@ -37,6 +37,10 @@ export async function updateSession(request: NextRequest) {
   //   return NextResponse.redirect(new URL("/login", request.url));
   // }
 
+  if (pathname === "/") {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
+  }
+
   if (user && AUTH_PAGES.includes(pathname)) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
