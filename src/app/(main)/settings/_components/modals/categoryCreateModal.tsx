@@ -4,13 +4,7 @@ import { useState } from "react";
 import { SettingsModal } from "./modalIngredients";
 import { useCreateCategory } from "@/hooks/mutation/useCreateCategory";
 import { ICON_PRESETS, COLOR_PRESETS } from "@/constants/categories";
-
-interface CategoryFormData {
-  name: string;
-  icon: string;
-  type: "expense" | "income";
-  color: string;
-}
+import type { CategoryFormData } from "@/types/categories";
 export default function CategoryCreateModal() {
   const [form, setForm] = useState<CategoryFormData>({
     name: "",

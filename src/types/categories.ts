@@ -9,3 +9,16 @@ export interface CategoryWithCount extends CategoryRow {
 export interface CategoryFilterParams {
   type?: TransactionType;
 }
+
+// 카테고리 폼 데이터 (생성/수정 공통)
+export interface CategoryFormData {
+  name: string;
+  icon: string;
+  type: "expense" | "income";
+  color: string;
+}
+
+// 카테고리 수정 폼 데이터 - id 추가한거
+export interface CategoryUpdateFormData extends CategoryFormData {
+  id: string;
+}

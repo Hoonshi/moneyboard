@@ -4,24 +4,14 @@ import { useState } from "react";
 import { SettingsModal } from "./modalIngredients";
 import { ICON_PRESETS, COLOR_PRESETS } from "@/constants/categories";
 import { useUpdateCategory } from "@/hooks/mutation/useUpdateCategory";
-
-interface CategoryId {
-  id: string;
-}
-
-interface CategoryFormData extends CategoryId {
-  name: string;
-  icon: string;
-  type: "expense" | "income";
-  color: string;
-}
+import type { CategoryUpdateFormData } from "@/types/categories";
 
 interface CategoryModalProps {
-  initialData: CategoryFormData & { id: string };
+  initialData: CategoryUpdateFormData;
 }
 
 export default function CategoryUpdateModal({ initialData }: CategoryModalProps) {
-  const [form, setForm] = useState<CategoryFormData>({
+  const [form, setForm] = useState<CategoryUpdateFormData>({
     id: initialData.id,
     name: initialData.name,
     icon: initialData.icon,
